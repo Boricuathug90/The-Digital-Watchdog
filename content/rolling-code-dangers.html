@@ -1,0 +1,28 @@
+<h2>The Rolling Code Myth: How Flipper Zero Exposes a Decade-Old Flaw</h2>
+<p>For years, we've trusted rolling codes to protect our most valuable assets. The little black fob on our keychain, we believed, used a sophisticated cryptographic handshake with our vehicle to grant access. Each time you press the button, a new, unpredictable code is generated, making simple "replay attacks" a thing of the past. This technology, used in everything from garage door openers to high-end car security systems, was a pillar of modern digital-physical security. That pillar is now crumbling, and the tool chipping away at it is a pocket-sized device known as the Flipper Zero.</p>
+
+<h3>What is Rolling Code?</h3>
+<p>In theory, rolling code (or hopping code) is a brilliant security measure. The transmitter (your key fob) and the receiver (your car) share a secret cryptographic key and a synchronized counter. When you press the button, the fob sends a code that includes the counter's current value, encrypted with the key. The car receives the code, decrypts it, and checks if the counter value is what it expects. If it is, the door unlocks, and both the fob and the car increment their counters for the next use. An old code won't work twice.</p>
+
+<h3>The Flaw in the Armor: Jam, Capture, and Replay</h3>
+<p>The primary vulnerability, famously demonstrated years ago with the "RollJam" attack, isn't a flaw in the encryption itself, but in the protocol's real-world implementation. The attack is deceptively simple:</p>
+<ol>
+    <li>An attacker uses a device (like a Flipper Zero) to broadcast a jamming signal on the frequency your key fob uses.</li>
+    <li>You press the unlock button on your fob. The jamming signal prevents your car from hearing the code, but the attacker's device, which is closer, records it.</li>
+    <li>Thinking it didn't work, you press the button again. The attacker again jams and records this second code.</li>
+    <li>The attacker now has two valid, sequential codes from your fob. They immediately transmit the <em>first</em> code they captured. Your car, which is still waiting for that code, accepts it and unlocks.</li>
+    <li>The attacker now holds the <em>second</em> code you generated, which is the next valid code in the sequence, and can use it to unlock your car at will later on.</li>
+</ol>
+
+<h3>Flipper Zero "Unleashed": Democratizing the Attack</h3>
+<p>While this vulnerability has been known for years, it required custom-built hardware and significant technical knowledge to execute. The Flipper Zero, especially with powerful custom firmware like "Unleashed 2.0," changes the game entirely. This firmware removes transmission restrictions and provides user-friendly applications that package these complex attacks into a few button presses.</p>
+<p>Recent research has shown that for many modern vehicles, the situation is even worse. Modified Flipper Zeros can allegedly bypass some rolling code systems with just a <em>single</em> signal capture, no jamming required. This suggests deeper flaws in the algorithms that were previously unknown to the public.</p>
+
+<h3>The Real-World Dangers</h3>
+<p>The implications are significant. This isn't just about a theoretical hack; it's about a readily available, sub-$200 device that can potentially grant access to millions of vehicles from major manufacturers. The dangers include:</p>
+<ul>
+    <li>Widespread vehicle theft without any sign of forced entry.</li>
+    <li>Theft of property from inside vehicles.</li>
+    <li>In some cases, the attack can de-synchronize the owner's original key fob, locking them out of their own car.</li>
+</ul>
+<p>For now, there is no easy fix for the millions of vulnerable vehicles on the road. While manufacturers are moving to more secure systems in newer models, the reality is that the "security" of rolling codes has been a myth for some time. The Flipper Zero didn't create the flaw, but it has dragged it into the light, forcing us to confront the fragility of the systems we rely on every day. It serves as a stark reminder of the perpetual cat-and-mouse game between security and exploitation.</p>
